@@ -1,0 +1,23 @@
+<h1>代做事項</h1>
+
+<%=form_tag todos_path, method: "get" do%>
+<%=hidden_field_tag :status,false%>
+<%= submit_tag "thingsdone"%>
+<%end%>
+<%=form_tag todos_path, method: "get" do%>
+<%=hidden_field_tag :status2,true%>
+<%= submit_tag "thingsundone"%>
+<%end%>
+
+<% @todos.each do |todo|%>
+<%= link_to todo.title, todo_path(todo)%>
+<%= link_to "修改待做事項", edit_todo_path(todo) %>
+<%= link_to "刪除待做事項", todo_path(todo), method: "delete" %>
+
+<% if todo.status ==  false %>
+<%= link_to "Done", compelete_todo_path(todo) %>
+<%else%>
+<%= link_to "Undone", compelete_todo_path(todo) %>
+<%end%>
+ </br>
+<%end%>
